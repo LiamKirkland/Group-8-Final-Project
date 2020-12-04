@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProfileController">
+   <children>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="213.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Text layoutX="93.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="114.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="96.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Major:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="111.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="126.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bio:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="nameField" layoutX="169.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filler Name" wrappingWidth="244.205078125">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="ageField" layoutX="171.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="80.40625">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="yearField" layoutX="171.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000" wrappingWidth="136.8125">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="majorField" layoutX="171.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filler Major" wrappingWidth="291.9541015625">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextArea fx:id="bioField" editable="false" layoutX="171.0" layoutY="394.0" prefHeight="230.0" prefWidth="401.0" text="Filler Bio" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextArea>
+      <Button fx:id="editProf" layoutX="546.0" mnemonicParsing="false" onAction="#openEditor" prefHeight="25.0" prefWidth="80.0" text="Edit Profile" />
+   </children>
+</AnchorPane>

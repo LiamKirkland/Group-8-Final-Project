@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditProfileController">
+   <children>
+      <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="200.0" layoutX="178.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Text layoutX="93.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="115.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="112.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="97.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Major:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="127.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bio:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nameField" layoutX="176.0" layoutY="222.0" prefHeight="25.0" prefWidth="231.0" />
+      <TextField fx:id="ageField" layoutX="176.0" layoutY="258.0" prefHeight="25.0" prefWidth="231.0" />
+      <TextField fx:id="yearField" layoutX="176.0" layoutY="297.0" prefHeight="25.0" prefWidth="231.0" />
+      <TextField fx:id="majorField" layoutX="176.0" layoutY="336.0" prefHeight="25.0" prefWidth="231.0" />
+      <TextField fx:id="bioField" layoutX="176.0" layoutY="374.0" prefHeight="191.0" prefWidth="231.0" />
+      <Button fx:id="changePicButton" layoutX="394.0" layoutY="189.0" mnemonicParsing="false" onAction="#changePicture" text="Change Picture" />
+      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveChanges" text="Save Changes" />
+   </children>
+</AnchorPane>
