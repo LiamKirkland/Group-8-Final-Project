@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProfileController">
    <children>
-      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="213.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageField" fitHeight="200.0" fitWidth="200.0" layoutX="213.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <Text layoutX="93.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
          <font>
             <Font name="System Bold" size="24.0" />
