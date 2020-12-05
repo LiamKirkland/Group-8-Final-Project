@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="381.0" style="-fx-background-color: sky blue;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="290.0" layoutY="112.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="61.0" text="Post" />
+      <Button layoutX="19.0" layoutY="22.0" mnemonicParsing="false" text="Home" />
+      <Text layoutX="177.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feed" textAlignment="CENTER">
+         <font>
+            <Font name="Ayuthaya" size="21.0" />
+         </font>
+      </Text>
+      <TextArea layoutX="59.0" layoutY="208.0" prefHeight="99.0" prefWidth="294.0" />
+      <TextField layoutX="49.0" layoutY="107.0" prefHeight="37.0" prefWidth="226.0" promptText="Share what's on your mind" />
+      <Button layoutX="211.0" layoutY="307.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="144.0" text="Comment" />
+      <ImageView fitHeight="37.0" fitWidth="39.0" layoutX="14.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Downloads/iconfinder_girl_female_woman_avatar_4043251.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="18.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jane">
+         <font>
+            <Font name="Anonymous Pro" size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="22.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rio">
+         <font>
+            <Font name="Anonymous Pro" size="13.0" />
+         </font>
+      </Text>
+      <TextArea layoutX="58.0" layoutY="376.0" prefHeight="99.0" prefWidth="294.0" />
+      <Button layoutX="58.0" layoutY="475.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="152.0" text="Like" />
+      <Button layoutX="210.0" layoutY="475.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="144.0" text="Comment" />
+      <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="14.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Downloads/iconfinder_sloth_lazybones_sluggard_avatar_4043272.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="58.0" layoutY="306.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="152.0" text="Like" />
+   </children>
+</AnchorPane>
