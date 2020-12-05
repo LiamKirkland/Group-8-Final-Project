@@ -75,6 +75,13 @@ public class Mainuser implements Serializable {
         this.username = username;
         this.password = password;
     }
+    
+    public Mainuser(String name, int age, String studentyear, String profpic) {
+        this.name = name;
+        this.age = age;
+        this.studentyear = studentyear;
+        this.profpic = profpic;
+    }
 
     public Integer getId() {
         return id;

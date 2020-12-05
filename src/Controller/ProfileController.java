@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,7 +28,6 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-
 
 public class ProfileController implements Initializable {
 
@@ -46,26 +46,29 @@ public class ProfileController implements Initializable {
     @FXML
     private Button editProf;
 
-    
     @FXML
     void openEditor(ActionEvent event) throws IOException {
-            
-            FXMLLoader loader = new FXMLLoader (getClass().getResource("/View/EditProfile.fxml"));
-            Parent editProfileView = loader.load();
-            Scene profileScene = new Scene(editProfileView);
-            EditProfileController editProfileController = loader.getController();
-            
-            
-            Stage stage = new Stage();
-            stage.setScene(profileScene);
-            stage.show();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/EditProfile.fxml"));
+        Parent editProfileView = loader.load();
+        Scene profileScene = new Scene(editProfileView);
+        EditProfileController editProfileController = loader.getController();
+
+        EditProfileController editProfCtrl = loader.getController();
+        Scene currentScene = ((Node) event.getSource()).getScene();
+        editProfCtrl.setPreviousScene(currentScene);
+
+        Stage stage = (Stage) currentScene.getWindow();
+        stage.setScene(profileScene);
+        stage.show();
     }
-    
+
     EntityManager manager;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         manager = (EntityManager) Persistence.createEntityManagerFactory("Group_8_Final_ProjectPU").createEntityManager();
-        
+
         Query query = manager.createNamedQuery("Mainuser.findById");
         query.setParameter("id", 1);
         List<Mainuser> userList = query.getResultList();
@@ -74,23 +77,47 @@ public class ProfileController implements Initializable {
         bioQuery.setParameter("id", 1);
         List<Bio> bioList = bioQuery.getResultList();
         Bio mainBio = bioList.get(0);
-        
-        
+
         nameField.setText(mainUser.getName());
         ageField.setText(String.valueOf(mainUser.getAge()));
         yearField.setText(mainUser.getStudentyear());
         majorField.setText(mainUser.getMajor());
         bioField.setText(mainBio.getContents());
-        String imageName;
-        if(mainUser.getProfpic() != null){
-            imageName = "/resources/images/" + mainUser.getProfpic();
-        }else{
-            imageName = "/resources/images/default.jpg";
+        String imageName = "/resources/images/" + mainUser.getProfpic();
+        Image pfp;
+        try {
+            pfp = new Image(getClass().getResourceAsStream(imageName));
+        } catch (NullPointerException e) {
+            pfp = new Image(getClass().getResourceAsStream("/resources/images/default.jpg"));
         }
-        Image pfp = new Image(getClass().getResourceAsStream(imageName));
         imageField.setImage(pfp);
-    }   
-    
-    
-    
+    }
+
+    public void reloadData() {
+        manager = (EntityManager) Persistence.createEntityManagerFactory("Group_8_Final_ProjectPU").createEntityManager();
+
+        Query query = manager.createNamedQuery("Mainuser.findById");
+        query.setParameter("id", 1);
+        List<Mainuser> userList = query.getResultList();
+        Mainuser mainUser = userList.get(0);
+        Query bioQuery = manager.createNamedQuery("Bio.findById");
+        bioQuery.setParameter("id", 1);
+        List<Bio> bioList = bioQuery.getResultList();
+        Bio mainBio = bioList.get(0);
+
+        nameField.setText(mainUser.getName());
+        ageField.setText(String.valueOf(mainUser.getAge()));
+        yearField.setText(mainUser.getStudentyear());
+        majorField.setText(mainUser.getMajor());
+        bioField.setText(mainBio.getContents());
+        String imageName = "/resources/images/" + mainUser.getProfpic();
+        Image pfp;
+        try {
+            pfp = new Image(getClass().getResourceAsStream(imageName));
+        } catch (NullPointerException e) {
+            pfp = new Image(getClass().getResourceAsStream("/resources/images/default.jpg"));
+        }
+        imageField.setImage(pfp);
+    }
+
 }
