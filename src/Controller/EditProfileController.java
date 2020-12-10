@@ -7,7 +7,9 @@ package Controller;
 
 import Model.Bio;
 import Model.Mainuser;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -18,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
@@ -35,21 +38,73 @@ import javax.persistence.Query;
 public class EditProfileController implements Initializable {
 
     @FXML
-    private ImageView imageView;
-    @FXML
-    private TextField nameField;
-    @FXML
-    private TextField ageField;
+    private CheckBox quietCheck;
+
     @FXML
     private TextField yearField;
+
+    @FXML
+    private TextField ageField;
+
+    @FXML
+    private CheckBox videoGameCheck;
+
+    @FXML
+    private CheckBox drawingCheck;
+
+    @FXML
+    private CheckBox sportsCheck;
+
+    @FXML
+    private ImageView imageView;
+
+    @FXML
+    private TextField nameField;
+
+    @FXML
+    private CheckBox tvCheck;
+
+    @FXML
+    private CheckBox computerCheck;
+
+    @FXML
+    private CheckBox animeCheck;
+
+    @FXML
+    private CheckBox readingCheck;
+
+    @FXML
+    private CheckBox exerciseCheck;
+
+    @FXML
+    private CheckBox introvertedCheck;
+
+    @FXML
+    private CheckBox outdoorsCheck;
+
     @FXML
     private TextField majorField;
-    @FXML
-    private TextField bioField;
+
     @FXML
     private Button changePicButton;
+
+    @FXML
+    private CheckBox talkativeCheck;
+
+    @FXML
+    private CheckBox studyingCheck;
+
+    @FXML
+    private CheckBox outgoingCheck;
+
     @FXML
     private Button saveButton;
+
+    @FXML
+    private CheckBox movieCheck;
+
+    @FXML
+    private CheckBox hangOutCheck;
 
     @FXML
     private void changePicture(ActionEvent event) {
@@ -83,6 +138,25 @@ public class EditProfileController implements Initializable {
             }
         });
     }
+    
+    
+    
+    private String boxToString(){
+        CheckBox[] bioTraits = {introvertedCheck, outgoingCheck, quietCheck, talkativeCheck, 
+            outdoorsCheck, exerciseCheck, sportsCheck, drawingCheck, tvCheck, animeCheck, 
+            videoGameCheck, computerCheck, studyingCheck, readingCheck, hangOutCheck, movieCheck};
+        
+        List<String> newBio = new ArrayList<>();
+        for(int i = 0; i < bioTraits.length; i++){
+            if(bioTraits[i].isSelected()){
+                newBio.add(bioTraits[i].getText());
+            }
+        }
+        
+        System.out.println(String.join(", ", newBio));
+        return String.join(", ", newBio);
+    }
+    
     Scene prevScene;
 
     public void setPreviousScene(Scene scene) {
@@ -90,8 +164,11 @@ public class EditProfileController implements Initializable {
     }
 
     @FXML
-    void saveChanges(ActionEvent event) {
-
+    void saveChanges(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.load(getClass().getResource("/View/Profile.fxml").openStream());
+        
+        ProfileController profCtrl = (ProfileController) loader.getController();
         try {
             if (nameField.getText() == null || ageField.getText() == null || yearField.getText() == null) {
 
@@ -111,15 +188,17 @@ public class EditProfileController implements Initializable {
                     currentUser.setStudentyear(yearField.getText());
                     currentUser.setProfpic((String) imageView.getUserData());
                     currentUser.setMajor(majorField.getText());
-                    currentBio.setContents(bioField.getText());
+                    currentBio.setContents(boxToString());
                     manager.getTransaction().commit();
                     System.out.println("Changes made successfully.");
                     Stage stage = (Stage) saveButton.getScene().getWindow();
 
+                    profCtrl.reloadData();
                     if (prevScene != null) {
                         stage.setScene(prevScene);
                     }
                 }
+                
             }
         } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -128,7 +207,6 @@ public class EditProfileController implements Initializable {
             alert.setContentText("1 or more inputs are empty or invalid. Please reenter and try again.");
             alert.showAndWait();
         }
-
     }
 
     EntityManager manager;
@@ -141,16 +219,13 @@ public class EditProfileController implements Initializable {
         query.setParameter("id", 1);
         List<Mainuser> userList = query.getResultList();
         Mainuser mainUser = userList.get(0);
-        Query bioQuery = manager.createNamedQuery("Bio.findById");
-        bioQuery.setParameter("id", 1);
-        List<Bio> bioList = bioQuery.getResultList();
-        Bio mainBio = bioList.get(0);
 
         nameField.setText(mainUser.getName());
         ageField.setText(String.valueOf(mainUser.getAge()));
         yearField.setText(mainUser.getStudentyear());
         majorField.setText(mainUser.getMajor());
-        bioField.setText(mainBio.getContents());
+        checkBioContents();
+        
         String imageName;
         if (mainUser.getProfpic() != null) {
             imageName = "/resources/images/" + mainUser.getProfpic();
@@ -163,4 +238,28 @@ public class EditProfileController implements Initializable {
         imageView.setImage(pfp);
     }
 
+    private void checkBioContents(){
+        manager = (EntityManager) Persistence.createEntityManagerFactory("Group_8_Final_ProjectPU").createEntityManager();
+        CheckBox[] bioTraits = {introvertedCheck, outgoingCheck, quietCheck, talkativeCheck, 
+            outdoorsCheck, exerciseCheck, sportsCheck, drawingCheck, tvCheck, animeCheck, 
+            videoGameCheck, computerCheck, studyingCheck, readingCheck, hangOutCheck, movieCheck};
+        
+        Query bioQuery = manager.createNamedQuery("Bio.findById");
+        bioQuery.setParameter("id", 1);
+        List<Bio> bioList = bioQuery.getResultList();
+        Bio mainBio = bioList.get(0);
+        
+        String bio = mainBio.getContents();
+        String[] bioArray = bio.split(", ");
+        
+        for (String checkedTrait : bioArray) {
+            for (int i = 0; i < bioTraits.length; i++) {
+                if(checkedTrait.equals(bioTraits[i].getText())){
+                    bioTraits[i].setSelected(true);
+                    
+                }
+            }
+            
+        }
+    }
 }
