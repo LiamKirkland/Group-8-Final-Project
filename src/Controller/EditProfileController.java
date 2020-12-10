@@ -17,6 +17,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -138,25 +140,23 @@ public class EditProfileController implements Initializable {
             }
         });
     }
-    
-    
-    
-    private String boxToString(){
-        CheckBox[] bioTraits = {introvertedCheck, outgoingCheck, quietCheck, talkativeCheck, 
-            outdoorsCheck, exerciseCheck, sportsCheck, drawingCheck, tvCheck, animeCheck, 
+
+    private String boxToString() {
+        CheckBox[] bioTraits = {introvertedCheck, outgoingCheck, quietCheck, talkativeCheck,
+            outdoorsCheck, exerciseCheck, sportsCheck, drawingCheck, tvCheck, animeCheck,
             videoGameCheck, computerCheck, studyingCheck, readingCheck, hangOutCheck, movieCheck};
-        
+
         List<String> newBio = new ArrayList<>();
-        for(int i = 0; i < bioTraits.length; i++){
-            if(bioTraits[i].isSelected()){
+        for (int i = 0; i < bioTraits.length; i++) {
+            if (bioTraits[i].isSelected()) {
                 newBio.add(bioTraits[i].getText());
             }
         }
-        
+
         System.out.println(String.join(", ", newBio));
         return String.join(", ", newBio);
     }
-    
+
     Scene prevScene;
 
     public void setPreviousScene(Scene scene) {
@@ -165,10 +165,10 @@ public class EditProfileController implements Initializable {
 
     @FXML
     void saveChanges(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.load(getClass().getResource("/View/Profile.fxml").openStream());
-        
-        ProfileController profCtrl = (ProfileController) loader.getController();
+        //FXMLLoader loader = new FXMLLoader();
+        //loader.load(getClass().getResource("/View/Profile.fxml").openStream());
+
+        //ProfileController profCtrl = loader.getController();
         try {
             if (nameField.getText() == null || ageField.getText() == null || yearField.getText() == null) {
 
@@ -191,14 +191,20 @@ public class EditProfileController implements Initializable {
                     currentBio.setContents(boxToString());
                     manager.getTransaction().commit();
                     System.out.println("Changes made successfully.");
-                    Stage stage = (Stage) saveButton.getScene().getWindow();
 
-                    profCtrl.reloadData();
-                    if (prevScene != null) {
-                        stage.setScene(prevScene);
-                    }
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Profile.fxml"));
+                    Parent profileView = loader.load();
+                    Scene profileScene = new Scene(profileView);
+
+                    ProfileController profCtrl = loader.getController();
+                    Scene currentScene = ((Node) event.getSource()).getScene();
+                    
+
+                    Stage stage = (Stage) currentScene.getWindow();
+                    stage.setScene(profileScene);
+                    stage.show();
                 }
-                
+
             }
         } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -225,7 +231,7 @@ public class EditProfileController implements Initializable {
         yearField.setText(mainUser.getStudentyear());
         majorField.setText(mainUser.getMajor());
         checkBioContents();
-        
+
         String imageName;
         if (mainUser.getProfpic() != null) {
             imageName = "/resources/images/" + mainUser.getProfpic();
@@ -238,28 +244,28 @@ public class EditProfileController implements Initializable {
         imageView.setImage(pfp);
     }
 
-    private void checkBioContents(){
+    private void checkBioContents() {
         manager = (EntityManager) Persistence.createEntityManagerFactory("Group_8_Final_ProjectPU").createEntityManager();
-        CheckBox[] bioTraits = {introvertedCheck, outgoingCheck, quietCheck, talkativeCheck, 
-            outdoorsCheck, exerciseCheck, sportsCheck, drawingCheck, tvCheck, animeCheck, 
+        CheckBox[] bioTraits = {introvertedCheck, outgoingCheck, quietCheck, talkativeCheck,
+            outdoorsCheck, exerciseCheck, sportsCheck, drawingCheck, tvCheck, animeCheck,
             videoGameCheck, computerCheck, studyingCheck, readingCheck, hangOutCheck, movieCheck};
-        
+
         Query bioQuery = manager.createNamedQuery("Bio.findById");
         bioQuery.setParameter("id", 1);
         List<Bio> bioList = bioQuery.getResultList();
         Bio mainBio = bioList.get(0);
-        
+
         String bio = mainBio.getContents();
         String[] bioArray = bio.split(", ");
-        
+
         for (String checkedTrait : bioArray) {
             for (int i = 0; i < bioTraits.length; i++) {
-                if(checkedTrait.equals(bioTraits[i].getText())){
+                if (checkedTrait.equals(bioTraits[i].getText())) {
                     bioTraits[i].setSelected(true);
-                    
+
                 }
             }
-            
+
         }
     }
 }

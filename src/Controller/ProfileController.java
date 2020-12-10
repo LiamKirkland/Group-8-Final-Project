@@ -52,7 +52,6 @@ public class ProfileController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/EditProfile.fxml"));
         Parent editProfileView = loader.load();
         Scene profileScene = new Scene(editProfileView);
-        EditProfileController editProfileController = loader.getController();
 
         EditProfileController editProfCtrl = loader.getController();
         Scene currentScene = ((Node) event.getSource()).getScene();
@@ -91,6 +90,7 @@ public class ProfileController implements Initializable {
             pfp = new Image(getClass().getResourceAsStream("/resources/images/default.jpg"));
         }
         imageField.setImage(pfp);
+        
     }
 
     public void reloadData() {
@@ -118,6 +118,7 @@ public class ProfileController implements Initializable {
             pfp = new Image(getClass().getResourceAsStream("/resources/images/default.jpg"));
         }
         imageField.setImage(pfp);
+        System.out.println("NAME: " + nameField.getText());
     }
 
 }
