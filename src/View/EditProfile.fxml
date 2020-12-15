@@ -1,123 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="806.0" prefWidth="496.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="200.0" layoutX="178.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-      <Text layoutX="93.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+      <ImageView fx:id="imageView" fitHeight="178.0" fitWidth="206.0" layoutX="157.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
+      <Text layoutX="86.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 17pt; -fx-font-family: PT Serif;" text="Name:">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="PT Serif" size="24.0" />
          </font>
       </Text>
-      <Text layoutX="115.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age:">
+      <Text layoutX="103.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 17pt; -fx-font-family: PT Serif;" text="Age:">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="PT Serif" size="24.0" />
          </font>
       </Text>
-      <Text layoutX="112.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Year:">
+      <Text layoutX="100.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 17pt; -fx-font-family: PT Serif;" text="Year:">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="PT Serif" size="24.0" />
          </font>
       </Text>
-      <Text layoutX="97.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Major:">
+      <Text layoutX="94.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 17pt; -fx-font-family: PT Serif;" text="Major:">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="PT Serif" size="24.0" />
          </font>
       </Text>
-      <Text layoutX="45.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bio (Interests, Personality Traits, etc. Select all that apply):">
+      <Text layoutX="75.0" layoutY="468.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bio (Interests, Personality Traits, etc) Select all that apply" textAlignment="CENTER" wrappingWidth="346.75396728515625">
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="PT Serif Caption" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="nameField" layoutX="176.0" layoutY="222.0" prefHeight="25.0" prefWidth="231.0" />
-      <TextField fx:id="ageField" layoutX="176.0" layoutY="258.0" prefHeight="25.0" prefWidth="231.0" />
-      <TextField fx:id="yearField" layoutX="176.0" layoutY="297.0" prefHeight="25.0" prefWidth="231.0" />
-      <TextField fx:id="majorField" layoutX="176.0" layoutY="336.0" prefHeight="25.0" prefWidth="231.0" />
-      <Button fx:id="changePicButton" layoutX="394.0" layoutY="189.0" mnemonicParsing="false" onAction="#changePicture" text="Change Picture" />
-      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveChanges" text="Save Changes" />
-      <CheckBox fx:id="introvertedCheck" layoutX="9.0" layoutY="403.0" mnemonicParsing="false" text="Introverted">
+      <TextField fx:id="nameField" layoutX="176.0" layoutY="270.0" prefHeight="35.0" prefWidth="245.0" />
+      <TextField fx:id="ageField" layoutX="176.0" layoutY="313.0" prefHeight="35.0" prefWidth="245.0" />
+      <TextField fx:id="yearField" layoutX="175.0" layoutY="357.0" prefHeight="35.0" prefWidth="245.0" />
+      <TextField fx:id="majorField" layoutX="176.0" layoutY="400.0" prefHeight="35.0" prefWidth="245.0" />
+      <Button fx:id="changePicButton" layoutX="313.0" layoutY="24.0" mnemonicParsing="false" onAction="#changePicture" style="-fx-font-size: 14pt;" text="Change Picture" />
+      <Button fx:id="saveButton" layoutX="19.0" layoutY="24.0" mnemonicParsing="false" onAction="#saveChanges" style="-fx-font-size: 14pt;" text="Save Changes" />
+      <CheckBox fx:id="introvertedCheck" layoutX="99.0" layoutY="516.0" mnemonicParsing="false" text="Introverted">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="outgoingCheck" layoutX="145.0" layoutY="403.0" mnemonicParsing="false" text="Outgoing">
+      <CheckBox fx:id="outgoingCheck" layoutX="291.0" layoutY="514.0" mnemonicParsing="false" text="Outgoing">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="talkativeCheck" layoutX="431.0" layoutY="403.0" mnemonicParsing="false" text="Talkative">
+      <CheckBox fx:id="talkativeCheck" layoutX="98.0" layoutY="650.0" mnemonicParsing="false" text="Talkative">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="quietCheck" layoutX="290.0" layoutY="403.0" mnemonicParsing="false" text="Quiet">
+      <CheckBox fx:id="quietCheck" layoutX="290.0" layoutY="682.0" mnemonicParsing="false" text="Quiet">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="sportsCheck" layoutX="290.0" layoutY="435.0" mnemonicParsing="false" text="Sports">
+      <CheckBox fx:id="sportsCheck" layoutX="97.0" layoutY="717.0" mnemonicParsing="false" text="Sports">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="drawingCheck" layoutX="431.0" layoutY="435.0" mnemonicParsing="false" text="Drawing">
+      <CheckBox fx:id="drawingCheck" layoutX="291.0" layoutY="648.0" mnemonicParsing="false" text="Drawing">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="exerciseCheck" layoutX="145.0" layoutY="435.0" mnemonicParsing="false" text="Exercise">
+      <CheckBox fx:id="exerciseCheck" layoutX="291.0" layoutY="546.0" mnemonicParsing="false" text="Exercise">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="outdoorsCheck" layoutX="9.0" layoutY="435.0" mnemonicParsing="false" text="Outdoors">
+      <CheckBox fx:id="outdoorsCheck" layoutX="99.0" layoutY="548.0" mnemonicParsing="false" text="Outdoors">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="videoGameCheck" layoutX="290.0" layoutY="469.0" mnemonicParsing="false" text="Video Games">
+      <CheckBox fx:id="videoGameCheck" layoutX="290.0" layoutY="715.0" mnemonicParsing="false" text="Video Games">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="computerCheck" layoutX="431.0" layoutY="469.0" mnemonicParsing="false" text="Computers">
+      <CheckBox fx:id="computerCheck" layoutX="96.0" layoutY="749.0" mnemonicParsing="false" text="Computers">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="animeCheck" layoutX="145.0" layoutY="469.0" mnemonicParsing="false" text="Anime">
+      <CheckBox fx:id="animeCheck" layoutX="291.0" layoutY="580.0" mnemonicParsing="false" text="Anime">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="tvCheck" layoutX="9.0" layoutY="469.0" mnemonicParsing="false" text="TV Shows">
+      <CheckBox fx:id="tvCheck" layoutX="99.0" layoutY="582.0" mnemonicParsing="false" text="TV Shows">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="studyingCheck" layoutX="9.0" layoutY="503.0" mnemonicParsing="false" text="Studying">
+      <CheckBox fx:id="studyingCheck" layoutX="99.0" layoutY="616.0" mnemonicParsing="false" text="Studying">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="readingCheck" layoutX="145.0" layoutY="503.0" mnemonicParsing="false" text="Reading">
+      <CheckBox fx:id="readingCheck" layoutX="291.0" layoutY="614.0" mnemonicParsing="false" text="Reading">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="movieCheck" layoutX="431.0" layoutY="503.0" mnemonicParsing="false" text="Movies">
+      <CheckBox fx:id="movieCheck" layoutX="97.0" layoutY="683.0" mnemonicParsing="false" text="Movies">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="hangOutCheck" layoutX="290.0" layoutY="503.0" mnemonicParsing="false" text="Hanging Out">
+      <CheckBox fx:id="hangOutCheck" layoutX="290.0" layoutY="747.0" mnemonicParsing="false" text="Hanging Out">
          <font>
-            <Font size="18.0" />
+            <Font name="PT Sans" size="18.0" />
          </font>
       </CheckBox>
    </children>

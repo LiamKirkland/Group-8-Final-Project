@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Bio.findAll", query = "SELECT b FROM Bio b")
+    , @NamedQuery(name = "Bio.findBiosContaining", query = "SELECT b FROM Bio b WHERE lower(b.contents) LIKE :contents")
     , @NamedQuery(name = "Bio.findById", query = "SELECT b FROM Bio b WHERE b.id = :id")})
 public class Bio implements Serializable {
 

@@ -108,6 +108,12 @@ public class EditProfileController implements Initializable {
     @FXML
     private CheckBox hangOutCheck;
 
+    Mainuser loggedInUser;
+
+    public EditProfileController(Mainuser userLogin) {
+        loggedInUser = userLogin;
+    }
+
     @FXML
     private void changePicture(ActionEvent event) {
         TextInputDialog dialog = new TextInputDialog(".png");
@@ -121,7 +127,7 @@ public class EditProfileController implements Initializable {
             String imageName = "/resources/images/" + name;
             Image pfp;
             if ("".equals(name)) {
-                pfp = new Image(getClass().getResourceAsStream("/resources/images/default.jpg"));
+                pfp = new Image(getClass().getResourceAsStream("/resources/images/default.png"));
                 imageView.setImage(pfp);
                 imageView.setUserData(null);
                 System.out.println("worked");
@@ -131,9 +137,9 @@ public class EditProfileController implements Initializable {
                     imageView.setImage(pfp);
                     imageView.setUserData(name);
                 } catch (NullPointerException e) {
-                    pfp = new Image(getClass().getResourceAsStream("/resources/images/default.jpg"));
+                    pfp = new Image(getClass().getResourceAsStream("/resources/images/default.png"));
                     imageView.setImage(pfp);
-                    imageView.setUserData("default.jpg");
+                    imageView.setUserData("default.png");
                     System.out.println("no work");
                     System.out.println(name);
                 }
@@ -154,13 +160,11 @@ public class EditProfileController implements Initializable {
         }
 
         System.out.println(String.join(", ", newBio));
-        return String.join(", ", newBio);
-    }
-
-    Scene prevScene;
-
-    public void setPreviousScene(Scene scene) {
-        prevScene = scene;
+        if(String.join(", ", newBio).isEmpty()){
+            return null;
+        }else{
+            return String.join(", ", newBio);
+        }
     }
 
     @FXML
@@ -178,8 +182,8 @@ public class EditProfileController implements Initializable {
                 alert.setContentText("1 or more inputs are empty or invalid. Please reenter and try again.");
                 alert.showAndWait();
             } else {
-                Mainuser currentUser = manager.find(Mainuser.class, 1);
-                Bio currentBio = manager.find(Bio.class, 1);
+                Mainuser currentUser = manager.find(Mainuser.class, loggedInUser.getId());
+                Bio currentBio = manager.find(Bio.class, loggedInUser.getId());
 
                 if (currentUser != null && currentBio != null) {
                     manager.getTransaction().begin();
@@ -193,12 +197,13 @@ public class EditProfileController implements Initializable {
                     System.out.println("Changes made successfully.");
 
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Profile.fxml"));
+                    ProfileController profCtrl = new ProfileController(currentUser);
+                    loader.setController(profCtrl);
                     Parent profileView = loader.load();
                     Scene profileScene = new Scene(profileView);
 
-                    ProfileController profCtrl = loader.getController();
-                    Scene currentScene = ((Node) event.getSource()).getScene();
                     
+                    Scene currentScene = ((Node) event.getSource()).getScene();
 
                     Stage stage = (Stage) currentScene.getWindow();
                     stage.setScene(profileScene);
@@ -222,7 +227,7 @@ public class EditProfileController implements Initializable {
         manager = (EntityManager) Persistence.createEntityManagerFactory("Group_8_Final_ProjectPU").createEntityManager();
 
         Query query = manager.createNamedQuery("Mainuser.findById");
-        query.setParameter("id", 1);
+        query.setParameter("id", loggedInUser.getId());
         List<Mainuser> userList = query.getResultList();
         Mainuser mainUser = userList.get(0);
 
@@ -237,7 +242,7 @@ public class EditProfileController implements Initializable {
             imageName = "/resources/images/" + mainUser.getProfpic();
             imageView.setUserData(mainUser.getProfpic());
         } else {
-            imageName = "/resources/images/default.jpg";
+            imageName = "/resources/images/default.png";
             imageView.setUserData(null);
         }
         Image pfp = new Image(getClass().getResourceAsStream(imageName));
@@ -251,21 +256,25 @@ public class EditProfileController implements Initializable {
             videoGameCheck, computerCheck, studyingCheck, readingCheck, hangOutCheck, movieCheck};
 
         Query bioQuery = manager.createNamedQuery("Bio.findById");
-        bioQuery.setParameter("id", 1);
+        bioQuery.setParameter("id", loggedInUser.getId());
         List<Bio> bioList = bioQuery.getResultList();
         Bio mainBio = bioList.get(0);
 
         String bio = mainBio.getContents();
-        String[] bioArray = bio.split(", ");
+        try {
+            String[] bioArray = bio.split(", ");
+            for (String checkedTrait : bioArray) {
+                for (int i = 0; i < bioTraits.length; i++) {
+                    if (checkedTrait.equals(bioTraits[i].getText())) {
+                        bioTraits[i].setSelected(true);
 
-        for (String checkedTrait : bioArray) {
-            for (int i = 0; i < bioTraits.length; i++) {
-                if (checkedTrait.equals(bioTraits[i].getText())) {
-                    bioTraits[i].setSelected(true);
-
+                    }
                 }
+
             }
+        } catch (NullPointerException e) {
 
         }
+
     }
 }

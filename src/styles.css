@@ -1,0 +1,36 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 14, 2020, 10:16:01 PM
+    Author     : JUJU
+*/
+
+
+.root{
+    -fx-font-size: 12pt;
+    -fx-font-family: "PT Serif";
+    -fx-background-color: #FFFFFF;
+}
+
+.button { 
+    -fx-background-color: #DEEBF7; 
+    -fx-background-radius: 10px;
+    -fx-font-size: 17pt;
+     -fx-font-family: "PT Serif Caption";
+    
+    
+}
+
+.button:hover{
+    -fx-background-color: #9DC2E7;
+    -fx-scale-y: 1.1;
+    -fx-scale-x: 1.1;
+}
+
+.TextField { 
+    -fx-cursor: hand;
+}
+
